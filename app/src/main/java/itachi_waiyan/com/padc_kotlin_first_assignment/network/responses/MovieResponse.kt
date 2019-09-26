@@ -13,7 +13,7 @@ class MovieResponse (
     val message: String,
 
     @SerializedName("data")
-    val data : List<MovieVO>
+    val data : MutableList<MovieVO>
 )
     {
         fun isResponseOk() : Boolean {

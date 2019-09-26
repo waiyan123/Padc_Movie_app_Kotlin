@@ -2,47 +2,54 @@ package itachi_waiyan.com.padc_kotlin_first_assignment
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import android.widget.Toolbar
 import androidx.core.widget.ImageViewCompat
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
-import butterknife.BindView
-import butterknife.ButterKnife
 import com.google.android.material.tabs.TabLayout
 import itachi_waiyan.com.padc_kotlin_first_assignment.activities.BaseActivity
 import itachi_waiyan.com.padc_kotlin_first_assignment.adapters.MainViewPagerAdapter
 import itachi_waiyan.com.padc_kotlin_first_assignment.data.vos.MovieVO
+import itachi_waiyan.com.padc_kotlin_first_assignment.delegates.MovieDelegate
 import itachi_waiyan.com.padc_kotlin_first_assignment.fragments.FragmentCinema
 import itachi_waiyan.com.padc_kotlin_first_assignment.fragments.FragmentComingSoon
 import itachi_waiyan.com.padc_kotlin_first_assignment.fragments.FragmentNowShowing
+import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity(),MovieDelegate {
 
-    @BindView(R.id.navigation)
-    lateinit var toolbar: ImageViewCompat
+    override fun onTabMovieItem(movieId: Int) {
+        Toast.makeText(this,"Clicked",Toast.LENGTH_LONG).show()
+    }
 
-    @BindView(R.id.textView)
-    lateinit var textView : TextView
-
-    @BindView(R.id.img_search)
-    lateinit var imgSearch : ImageViewCompat
-
-    @BindView(R.id.main_tab_layout)
-    lateinit var mainTab : TabLayout
-
-    @BindView(R.id.main_view_pager)
-    lateinit var mainViewPager : ViewPager2
+    lateinit var textView: TextView
+    lateinit var imgSearch : ImageView
+    private var tabLayout: TabLayout? = null
+    var viewPager: ViewPager? = null
 
     lateinit var movieList : List<MovieVO>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        ButterKnife.bind(this)
 
-        model.getMovies({
+        textView = findViewById(R.id.tv_title)
+        imgSearch = findViewById(R.id.img_search)
+
+        tabLayout = findViewById(R.id.main_tab_layout)as TabLayout
+        viewPager = findViewById(R.id.main_view_pager)as ViewPager
+
+        tabLayout!!.setupWithViewPager(viewPager)
+        setUpWithViewPager(viewPager!!)
+
+        model.getMovies("",
+            {
             movieList = it
+            Log.d("test---",movieList.get(0).movie_name)
         },
             {
             Toast.makeText(this,it,Toast.LENGTH_LONG).show()

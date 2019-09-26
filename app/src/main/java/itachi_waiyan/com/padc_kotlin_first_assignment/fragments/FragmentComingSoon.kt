@@ -7,9 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import itachi_waiyan.com.padc_kotlin_first_assignment.R
 
-class FragmentComingSoon : Fragment {
-
-    constructor()
+class FragmentComingSoon : Fragment(){
 
     override fun onCreateView(
         inflater: LayoutInflater,

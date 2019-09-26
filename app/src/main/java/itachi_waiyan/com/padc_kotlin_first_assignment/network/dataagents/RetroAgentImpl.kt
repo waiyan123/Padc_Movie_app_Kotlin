@@ -36,9 +36,9 @@ object RetroAgentImpl : MovieAgent {
 
     }
 
-    override fun getMovies(onSuccess: (List<MovieVO>) -> Unit, onFailure: (String) -> Unit) {
+    override fun getMovies(accessToken : String,onSuccess: (MutableList<MovieVO>) -> Unit, onFailure: (String) -> Unit) {
 
-        val call = movieApi.getMovies()
+        val call = movieApi.getMovies(accessToken)
         call.enqueue(object : Callback<MovieResponse> {
             override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
                 onFailure(t.localizedMessage)

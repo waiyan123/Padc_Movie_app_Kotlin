@@ -7,12 +7,10 @@ abstract class BaseViewHolder<T>(itemView : View) : RecyclerView.ViewHolder(item
 
     var data : T? = null
     set(value) {
-        field = value
-
         //non-null data pass to bind with views
             if (value != null) {
                 bindData(value)
         }
     }
-    abstract fun bindData(data : T)
+    protected abstract fun bindData(data : T)
 }

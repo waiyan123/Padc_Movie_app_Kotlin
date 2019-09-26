@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"/>
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tv_title"
             android:layout_margin="10dp"
             android:textAlignment="center"
             android:layout_toRightOf="@id/navigation"
@@ -57,7 +57,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <androidx.viewpager2.widget.ViewPager2
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/main_view_pager"
         app:layout_constraintTop_toBottomOf="@id/main_tab_layout"
         app:layout_constraintLeft_toLeftOf="parent"
