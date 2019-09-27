@@ -20,7 +20,7 @@ abstract class BaseAdapter<W : BaseViewHolder<T>,T> : RecyclerView.Adapter<W>(){
         notifyDataSetChanged()
     }
 
-    fun appendNewData(newData: List<T>){
+    fun appendNewData(newData: MutableList<T>){
         dataList.addAll(newData)
         notifyDataSetChanged()
     }

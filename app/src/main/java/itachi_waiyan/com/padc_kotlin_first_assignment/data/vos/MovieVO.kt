@@ -1,12 +1,12 @@
 package itachi_waiyan.com.padc_kotlin_first_assignment.data.vos
 
-import androidx.room.ColumnInfo
-import androidx.room.Embedded
-import androidx.room.Ignore
+import androidx.room.*
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "movies_table")
 data class MovieVO(
 
+    @PrimaryKey
     @SerializedName ("id")
     @ColumnInfo(name = "id")
     var id : Int,
@@ -17,7 +17,7 @@ data class MovieVO(
 
     @SerializedName ("imdb")
     @ColumnInfo(name = "imdb")
-    var rating : Int,
+    var rating : Double,
 
     @SerializedName ("rotten_tomato")
     @ColumnInfo(name="rotten_tomato")
@@ -45,4 +45,5 @@ data class MovieVO(
 )
 
 {
+
 }

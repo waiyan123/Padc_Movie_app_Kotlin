@@ -10,15 +10,21 @@ import androidx.recyclerview.widget.RecyclerView
 import itachi_waiyan.com.padc_kotlin_first_assignment.R
 import itachi_waiyan.com.padc_kotlin_first_assignment.adapters.MovieRecyclerAdapter
 import itachi_waiyan.com.padc_kotlin_first_assignment.data.models.MovieModelImpl
+import itachi_waiyan.com.padc_kotlin_first_assignment.data.vos.MovieVO
 import itachi_waiyan.com.padc_kotlin_first_assignment.delegates.MovieDelegate
 
-class FragmentNowShowing : Fragment(){
+class FragmentNowShowing : Fragment{
 
     lateinit var recyclerView : RecyclerView
     lateinit var adapter : MovieRecyclerAdapter
     lateinit var delegate : MovieDelegate
 
-    lateinit var model : MovieModelImpl
+    lateinit var mList: MutableList<MovieVO>
+
+    constructor(list: MutableList<MovieVO>){
+        mList = list
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,17 +34,12 @@ class FragmentNowShowing : Fragment(){
         val itemView : View = inflater.inflate(R.layout.fragment_now_showing,container,false)
         recyclerView = itemView.findViewById(R.id.rv_movie)
         adapter = MovieRecyclerAdapter(delegate)
-        model = MovieModelImpl
         return itemView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        model.getMovies("",{
-            adapter.setNewData(it)
-        },{
-
-        })
+        if(mList!=null) adapter.setNewData(mList)
     }
 
     override fun onAttach(context: Context) {

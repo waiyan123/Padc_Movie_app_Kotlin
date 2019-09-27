@@ -31,7 +31,7 @@ class MainActivity : BaseActivity(),MovieDelegate {
     private var tabLayout: TabLayout? = null
     var viewPager: ViewPager? = null
 
-    lateinit var movieList : List<MovieVO>
+    lateinit var movieList : MutableList<MovieVO>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,13 +43,13 @@ class MainActivity : BaseActivity(),MovieDelegate {
         tabLayout = findViewById(R.id.main_tab_layout)as TabLayout
         viewPager = findViewById(R.id.main_view_pager)as ViewPager
 
-        tabLayout!!.setupWithViewPager(viewPager)
-        setUpWithViewPager(viewPager!!)
-
         model.getMovies("",
             {
             movieList = it
-            Log.d("test---",movieList.get(0).movie_name)
+
+                Toast.makeText(this,movieList.get(0).movie_name,Toast.LENGTH_SHORT).show()
+                tabLayout!!.setupWithViewPager(viewPager)
+                setUpWithViewPager(viewPager!!)
         },
             {
             Toast.makeText(this,it,Toast.LENGTH_LONG).show()
@@ -59,7 +59,7 @@ class MainActivity : BaseActivity(),MovieDelegate {
 
     fun setUpWithViewPager(viewPager: ViewPager){
         val adapter = MainViewPagerAdapter(supportFragmentManager)
-        adapter.addFragment(FragmentNowShowing(), "ONE")
+        adapter.addFragment(FragmentNowShowing(movieList), "ONE")
         adapter.addFragment(FragmentCinema(), "TWO")
         adapter.addFragment(FragmentComingSoon(), "THREE")
         viewPager.adapter = adapter
