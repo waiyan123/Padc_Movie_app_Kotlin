@@ -17,7 +17,7 @@ data class MovieVO(
 
     @SerializedName ("imdb")
     @ColumnInfo(name = "imdb")
-    var rating : Double,
+    var imdb : Double,
 
     @SerializedName ("rotten_tomato")
     @ColumnInfo(name="rotten_tomato")
@@ -28,7 +28,7 @@ data class MovieVO(
     var meta_centric : Int ,
 
     @SerializedName ("genre")
-    @Embedded(prefix="genre")
+    @ColumnInfo(name = "genre")
     var genreList : List<GenreVO>,
 
     @SerializedName ("overview")
@@ -38,8 +38,6 @@ data class MovieVO(
     @SerializedName ("poster")
     @ColumnInfo(name="poster")
     var poster : String
-
-
 
 
 )

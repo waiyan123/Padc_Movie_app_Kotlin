@@ -8,11 +8,12 @@ abstract class BaseAdapter<W : BaseViewHolder<T>,T> : RecyclerView.Adapter<W>(){
     private var dataList : MutableList<T> = ArrayList()
 
     override fun getItemCount(): Int {
-        return dataList.size
+        return 6
     }
 
     override fun onBindViewHolder(holder: W, position: Int) {
         holder.data = dataList[position]
+
     }
 
     fun setNewData(newData : MutableList<T>){

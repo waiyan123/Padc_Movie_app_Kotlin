@@ -44,7 +44,6 @@
 
     </RelativeLayout>
 
-
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/main_tab_layout"
         app:tabTextColor="@color/textColorSecondary"
@@ -52,18 +51,16 @@
         app:tabTextAppearance="@style/MainTabLayoutStyle"
         app:tabIconTint="@color/textColorSecondary"
         app:layout_constraintTop_toBottomOf="@id/layout_header"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/main_view_pager"
-        app:layout_constraintTop_toBottomOf="@id/main_tab_layout"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_tab_layout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

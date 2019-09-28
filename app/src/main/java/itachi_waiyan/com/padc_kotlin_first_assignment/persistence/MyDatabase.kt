@@ -9,7 +9,7 @@ import itachi_waiyan.com.padc_kotlin_first_assignment.data.vos.MovieVO
 import itachi_waiyan.com.padc_kotlin_first_assignment.persistence.daos.MovieDao
 import itachi_waiyan.com.padc_kotlin_first_assignment.persistence.typeconverters.GenreListTypeConverter
 
-@Database(entities = arrayOf(MovieVO::class),version = 1,exportSchema = false)
+@Database(entities = arrayOf(MovieVO::class),version = 3,exportSchema = false)
 @TypeConverters(GenreListTypeConverter::class)
 abstract class MyDatabase : RoomDatabase(){
     abstract fun movieDao() : MovieDao

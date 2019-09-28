@@ -1,30 +1,22 @@
 package itachi_waiyan.com.padc_kotlin_first_assignment
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import android.widget.Toolbar
-import androidx.core.widget.ImageViewCompat
 import androidx.viewpager.widget.ViewPager
-import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import itachi_waiyan.com.padc_kotlin_first_assignment.activities.BaseActivity
+import itachi_waiyan.com.padc_kotlin_first_assignment.activities.MovieDetailActivity
 import itachi_waiyan.com.padc_kotlin_first_assignment.adapters.MainViewPagerAdapter
 import itachi_waiyan.com.padc_kotlin_first_assignment.data.vos.MovieVO
 import itachi_waiyan.com.padc_kotlin_first_assignment.delegates.MovieDelegate
 import itachi_waiyan.com.padc_kotlin_first_assignment.fragments.FragmentCinema
 import itachi_waiyan.com.padc_kotlin_first_assignment.fragments.FragmentComingSoon
 import itachi_waiyan.com.padc_kotlin_first_assignment.fragments.FragmentNowShowing
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity(),MovieDelegate {
-
-    override fun onTabMovieItem(movieId: Int) {
-        Toast.makeText(this,"Clicked",Toast.LENGTH_LONG).show()
-    }
 
     lateinit var textView: TextView
     lateinit var imgSearch : ImageView
@@ -47,7 +39,6 @@ class MainActivity : BaseActivity(),MovieDelegate {
             {
             movieList = it
 
-                Toast.makeText(this,movieList.get(0).movie_name,Toast.LENGTH_SHORT).show()
                 tabLayout!!.setupWithViewPager(viewPager)
                 setUpWithViewPager(viewPager!!)
         },
@@ -63,5 +54,14 @@ class MainActivity : BaseActivity(),MovieDelegate {
         adapter.addFragment(FragmentCinema(), "TWO")
         adapter.addFragment(FragmentComingSoon(), "THREE")
         viewPager.adapter = adapter
+    }
+
+    override fun onTabMovieItem(movieId: Int) {
+        startActivity(
+            MovieDetailActivity.newIntent(
+                this,
+                movieId
+            )
+        )
     }
 }
